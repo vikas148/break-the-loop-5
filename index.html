@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Challenge: Hacker Edition</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #0f0;
+            margin: 0;
+            padding: 0;
+            background-image: url('hacker-background.jpg'); /* Add your hacker-themed background image here */
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Cyber rain effect */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url('https://w7.pngwing.com/pngs/707/822/png-transparent-matrix-digital-rain-special-effects-visual-effects-the-matrix-film-matr-agrave-s-erlenmeyer-miscellaneous-texture-text.png'); /* Replace 'rain.png' with your raindrop or matrix-like background image */
+    /* animation: cyberRain 5s linear infinite; */
+    opacity: 0.3; /* Adjust opacity as needed */
+}
+
+@keyframes cyberRain {
+    from {
+        transform: translateY(50px);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+
+
+
+
+        header {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            color: #0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for content */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        pre {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for code */
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Monaco, monospace;
+            font-size: 14px;
+            color: #0f0;
+        }
+
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="typewriter-title"></h1>
+    </header>
+    <div class="container">
+        <h2 id="typewriter-description"></h2>
+        <pre id="typewriter-code">
+            <code>
+                // Hacker's code goes here<br>
+                // Example code:<br>
+                const secretMessage = "Vg'f lbh zbir gur choyvp yrggre?";<br>
+                const decodedMessage = secretMessage.replace(/[a-zA-Z]/g, function(c) {<br>
+                    return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);<br>
+                });<br>
+                console.log("Decoded message: " + decodedMessage);<br>
+            </code>
+        </pre>
+    </div>
+    <footer>
+        &copy; 2023 Hacker's CTF Challenge
+    </footer>
+
+    <!-- Add an audio element for background music -->
+    <audio id="background-audio" loop autoplay>
+        <source src="background-audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // JavaScript for the typewriter effect
+        const titleText = "Hacker's CTF Challenge"; // Title text to display with typewriter effect
+        const descriptionText = "Welcome, fellow hacker! Crack this challenge and prove your skills. Decrypt the hidden message to claim your victory."; // Description text
+        const codeText = `
+const secretMessage = "Vg'f lbh zbir gur choyvp yrggre?";
+const decodedMessage = secretMessage.replace(/[a-zA-Z]/g, function(c) {
+    return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+});
+console.log("Decoded message: " + decodedMessage);
+`; // Code text
+
+        const titleElement = document.getElementById("typewriter-title");
+        const descriptionElement = document.getElementById("typewriter-description");
+        const codeElement = document.getElementById("typewriter-code");
+
+        let titleCharIndex = 0;
+        let descriptionCharIndex = 0;
+        let codeCharIndex = 0;
+
+        function typeWriterTitle() {
+            if (titleCharIndex < titleText.length) {
+                titleElement.innerHTML += titleText.charAt(titleCharIndex);
+                titleCharIndex++;
+                setTimeout(typeWriterTitle, 50); // Adjust the speed of typing here
+            } else {
+                setTimeout(typeWriterDescription, 1000); // Add a delay before typing description
+            }
+        }
+
+        function typeWriterDescription() {
+            if (descriptionCharIndex < descriptionText.length) {
+                descriptionElement.innerHTML += descriptionText.charAt(descriptionCharIndex);
+                descriptionCharIndex++;
+                setTimeout(typeWriterDescription, 20); // Adjust the speed of typing here
+            } else {
+                setTimeout(typeWriterCode, 1000); // Add a delay before typing code
+            }
+        }
+
+        function typeWriterCode() {
+            if (codeCharIndex < codeText.length) {
+                codeElement.innerHTML += codeText.charAt(codeCharIndex);
+                codeCharIndex++;
+                setTimeout(typeWriterCode, 20); // Adjust the speed of typing here
+            }
+        }
+
+        // Start the typewriter effect when the page loads
+        window.onload = function () {
+            typeWriterTitle();
+        };
+    </script>
+</body>
+</html>
